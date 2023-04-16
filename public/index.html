@@ -5,11 +5,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Genomics Aotearoa &amp; NeSI" name="author"/>
-<link href="https://genomicsaotearoa.github.io/Workshop-Bash_Scripting_And_HPC_Job_Scheduler/" rel="canonical"/>
-<link href="nesi_images/nesi_ga.png" rel="icon"/>
+<meta content="NeSI" name="author"/>
+<link href="https://nesi.github.io/blobtools-jupyter-vdt/" rel="canonical"/>
+<link href="nesi_images/nesi_logo.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.1.6" name="generator"/>
-<title>Introduction to Bash Scripting and HPC Scheduler</title>
+<title>Deploy BlobTools via Jupyter Virtual Desktop</title>
 <link href="assets/stylesheets/main.ded33207.min.css" rel="stylesheet"/>
 <link href="assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -29,13 +29,13 @@
                 body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
                 body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
                 </style><script src="assets/javascripts/glightbox.min.js"></script></head>
-<body data-md-color-accent="" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
+<body data-md-color-accent="" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#welcome-to-mkdocs">
+<a class="md-skip" href="#launch-blobtoolskit-viewer-via-jupyterhub-virtual-desktop">
           Skip to content
         </a>
 </div>
@@ -43,8 +43,8 @@
 </div>
 <header class="md-header md-header--shadow" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="Introduction to Bash Scripting and HPC Scheduler" class="md-header__button md-logo" data-md-component="logo" href="." title="Introduction to Bash Scripting and HPC Scheduler">
-<img alt="logo" src="nesi_images/nesi_ga.png"/>
+<a aria-label="Deploy BlobTools via Jupyter Virtual Desktop" class="md-header__button md-logo" data-md-component="logo" href="." title="Deploy BlobTools via Jupyter Virtual Desktop">
+<img alt="logo" src="nesi_images/nesi_logo.png"/>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
@@ -53,28 +53,28 @@
 <div class="md-header__ellipsis">
 <div class="md-header__topic">
 <span class="md-ellipsis">
-            Introduction to Bash Scripting and HPC Scheduler
+            Deploy BlobTools via Jupyter Virtual Desktop
           </span>
 </div>
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Welcome to MkDocs
+              Launch BlobToolsKit viewer via JupyterHub Virtual Desktop
             
           </span>
 </div>
 </div>
 </div>
 <form class="md-header__option" data-md-component="palette">
-<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="teal" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_3" hidden="" title="Switch to light mode">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"></path></svg>
 </label>
-<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="teal" data-md-color-scheme="default" id="__palette_2" name="__palette" type="radio"/>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_2" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
 </label>
-<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="teal" data-md-color-scheme="slate" id="__palette_3" name="__palette" type="radio"/>
+<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_3" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to system preference">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
 </label>
@@ -110,12 +110,12 @@
 </div>
 </div>
 <div class="md-header__source">
-<a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/Workshop-Bash_Scripting_And_HPC_Job_Scheduler" title="Go to repository">
+<a class="md-source" data-md-component="source" href="https://github.com/nesi/blobtools-jupyter-vdt" title="Go to repository">
 <div class="md-source__icon md-icon">
 <svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
 </div>
 <div class="md-source__repository">
-    GenomicsAotearoa/Workshop-Bash_Scripting_And_HPC_Job_Scheduler
+    nesi/blobtools-jupyter-vdt
   </div>
 </a>
 </div>
@@ -129,49 +129,27 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Introduction to Bash Scripting and HPC Scheduler" class="md-nav__button md-logo" data-md-component="logo" href="." title="Introduction to Bash Scripting and HPC Scheduler">
-<img alt="logo" src="nesi_images/nesi_ga.png"/>
+<a aria-label="Deploy BlobTools via Jupyter Virtual Desktop" class="md-nav__button md-logo" data-md-component="logo" href="." title="Deploy BlobTools via Jupyter Virtual Desktop">
+<img alt="logo" src="nesi_images/nesi_logo.png"/>
 </a>
-    Introduction to Bash Scripting and HPC Scheduler
+    Deploy BlobTools via Jupyter Virtual Desktop
   </label>
 <div class="md-nav__source">
-<a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/Workshop-Bash_Scripting_And_HPC_Job_Scheduler" title="Go to repository">
+<a class="md-source" data-md-component="source" href="https://github.com/nesi/blobtools-jupyter-vdt" title="Go to repository">
 <div class="md-source__icon md-icon">
 <svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
 </div>
 <div class="md-source__repository">
-    GenomicsAotearoa/Workshop-Bash_Scripting_And_HPC_Job_Scheduler
+    nesi/blobtools-jupyter-vdt
   </div>
 </a>
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          Welcome to MkDocs
-          <span class="md-nav__icon md-icon"></span>
-</label>
 <a class="md-nav__link md-nav__link--active" href=".">
-        Welcome to MkDocs
+        Launch BlobToolsKit viewer via JupyterHub Virtual Desktop
       </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#commands">
-    Commands
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#project-layout">
-    Project layout
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -182,43 +160,108 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#commands">
-    Commands
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#project-layout">
-    Project layout
-  </a>
-</li>
-</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs<a class="headerlink" href="#welcome-to-mkdocs" title="Permanent link">¶</a></h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">¶</a></h2>
+<h1 id="launch-blobtoolskit-viewer-via-jupyterhub-virtual-desktop">Launch BlobToolsKit viewer via JupyterHub Virtual Desktop<a class="headerlink" href="#launch-blobtoolskit-viewer-via-jupyterhub-virtual-desktop" title="Permanent link">¶</a></h1>
+<div class="admonition jupyter">
+<p class="admonition-title">1. Install</p>
+<ol>
+<li>
+<p>Start a Jupyter server session via <a href="https://jupyter.nesi.org.nz/">https://jupyter.nesi.org.nz/</a>. </p>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
+<li>Ideally with <kbd>4CPUs</kbd> and <kbd>8GB</kbd> of memory </li>
 </ul>
-<h2 id="project-layout">Project layout<a class="headerlink" href="#project-layout" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre></div>
+</li>
+<li>
+<p>Click  <kbd>Virtual Desktop</kbd> icon
+   <center><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="nesi_images/vdt_icon.png"><img alt="image" src="nesi_images/vdt_icon.png"/></a></center></p>
+</li>
+<li>
+<p>Open a <kbd>Terminal</kbd> session on Virtual Desktop and procees with the installation </p>
+<ul>
+<li>
+<p>Installation can be done via any terminal and not restricted to virtual desktop terminal </p>
+</li>
+<li>
+<p>change path to nobackup as we are going to create a python virtual environment which will consume a reasonable amount of Inodes.
+    <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi12345/
+</code></pre></div></p>
+</li>
+<li>Load a python module
+    <div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>module<span class="w"> </span>purge
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>module<span class="w"> </span>load<span class="w"> </span>Python/3.10.5-gimkl-2022a
+</code></pre></div></li>
+<li>Create a virtual environment
+    <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">blobtools2</span>
+</code></pre></div></li>
+<li>Activate the environment
+    <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nb">source</span><span class="w"> </span>blobtools2/bin/activate
+</code></pre></div></li>
+<li>Install <code>blobtoolkit[full]</code>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">pip</span> <span class="n">install</span> <span class="n">blobtoolkit</span><span class="p">[</span><span class="n">full</span><span class="p">]</span>
+</code></pre></div></li>
+<li>Although installing <code>[ful]</code> should take care of the extensions, we recommend installing <code>[host]</code> as a standalone command 
+    <div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">pip</span> <span class="n">install</span> <span class="n">blobtoolkit</span><span class="p">[</span><span class="n">host</span><span class="p">]</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="admonition jupyter">
+<p class="admonition-title">2. Create a sample dataset and test</p>
+<p>These instructions are extracted from the <a href="https://blobtoolkit.genomehubs.org/blobtools2/blobtools2-tutorials/creating-a-dataset/">official BlobToolKit support documentation</a> </p>
+<ul>
+<li>Choose a path in <em>nobackup</em> as the working directory
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>blobtools_tutorial<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>blobtools_tutorial
+</code></pre></div></li>
+<li>Download a sample .fast file
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>curl<span class="w"> </span>ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/028/725/GCA_001028725.1_S_venezuelensis_HH1/GCA_001028725.1_S_venezuelensis_HH1_genomic.fna.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-c<span class="w"> </span>&gt;<span class="w"> </span>ASSEMBLY_NAME.fasta
+</code></pre></div></li>
+<li>Create a meta file for viewer 
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>assembly:
+<a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a>  accession: GCA_001028725.1
+<a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a>  alias: S_venezuelensis_HH1
+<a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a>  bioproject: PRJEB530
+<a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a>  biosample: AMD00012916
+<a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a>  record_type: contig
+<a href="#__codelineno-8-7" id="__codelineno-8-7" name="__codelineno-8-7"></a>taxon:
+<a href="#__codelineno-8-8" id="__codelineno-8-8" name="__codelineno-8-8"></a>  name: Strongyloides venezuelensis
+</code></pre></div></li>
+<li>Create the dataset
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>blobtools<span class="w"> </span>create<span class="w"> </span>--fasta<span class="w"> </span>ASSEMBLY_NAME.fasta<span class="w"> </span>--meta<span class="w"> </span>ASSEMBLY_NAME.yaml<span class="w"> </span>--taxid<span class="w"> </span><span class="m">75913</span><span class="w"> </span>--taxdump<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/taxdump<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/DATASETS/ASSEMBLY_NAME
+</code></pre></div></li>
+</ul>
+</div>
+<div class="admonition jupyter">
+<p class="admonition-title">Launch BlobToolKit viewer</p>
+<ul>
+<li>Make sure the working directory contains the <strong>DATASET/</strong> directory and the input files. </li>
+<li>
+<p>Once verify, run 
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a>blobtools<span class="w"> </span>host<span class="w"> </span>--port<span class="w"> </span><span class="m">8081</span><span class="w"> </span>--api-port<span class="w"> </span><span class="m">8001</span><span class="w"> </span>--hostname<span class="w"> </span>localhost<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/DATASETS
+</code></pre></div></p>
+<ul>
+<li>If this triggers an error along the lines of <code>ERROR: Port 8001 already in use, unable to host BlobtoolKit API</code>...change the port id </li>
+</ul>
+</li>
+<li>
+<p>If all goes well, it should trigger a message similar to below
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="nesi_images/blobtools_view.png"><img alt="image" src="nesi_images/blobtools_view.png"/></a></p>
+</li>
+<li>Copy the URL appears alongside <code>Visit..</code> .i.e. <code>Visit http://localhost:8081 to use the interactive BlobToolKit Viewer</code></li>
+<li>
+<p>Open a Web Browser on <strong>Virtual Desktop</strong> by either clicking on the <em>Globe</em> icon on the bottom tool bar OR `<kbd>Applications</kbd> on top left corner &gt; <kbd>Internet</kbd> &gt; <kbd>Web Browser</kbd></p>
+</li>
+<li>
+<p>Paste the copied <code>http://localhost:8081</code> URL on firefox address bar 
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="nesi_images/blobtools_firefox.png"><img alt="image" src="nesi_images/blobtools_firefox.png"/></a></p>
+</li>
+</ul>
+</div>
 </article>
 </div>
 </div>
