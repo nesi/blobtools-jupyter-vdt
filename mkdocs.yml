@@ -12,8 +12,8 @@ repo_url: https://github.com/nesi/blobtools-jupyter-vdt
 
 theme:
   name: material
-  logo: nesi_images/nesi_ga.png
-  favicon: nesi_images/nesi_ga.png
+  logo: nesi_images/nesi_logo.png
+  favicon: nesi_images/nesi_logo.png
    # 404 page
   static_templates:
     - 404.html
@@ -25,12 +25,12 @@ theme:
     toggle:
       icon: material/brightness-auto
       name: Switch to light mode
-    primary: teal
+    primary: indigo
 
   # Palette toggle for light mode
   - media: "(prefers-color-scheme: light)"
     scheme: default
-    primary: teal
+    primary: indigo
 
 
     toggle:
@@ -43,7 +43,7 @@ theme:
     toggle:
       icon: material/brightness-4
       name: Switch to system preference
-    primary: teal
+    primary: indigo
   
   features:
     - navigation.tracking
