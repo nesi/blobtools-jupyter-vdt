@@ -69,8 +69,11 @@
     blobtools host --port 8081 --api-port 8001 --hostname localhost ${PWD}/DATASETS
     ```
         - If this triggers an error along the lines of `ERROR: Port 8001 already in use, unable to host BlobtoolKit API`...change the port id 
+    
     - If all goes well, it should trigger a message similar to below
     ![image](./nesi_images/blobtools_view.png)
+    - Copy the URL appears alongside `Visit..` .i.e. `Visit http://localhost:8081 to use the interactive BlobToolKit Viewer`
+    - Open a Web Browser on **Virtual Desktop** by either clicking on the *Globe* icon on the bottom tool bar OR `<KBD>Applications</KBD> on top left corner > <KBD>Internet</KBD> > <KBD>Web Browser</KBD>
 
-
-        
+    - Paste the copied `http://localhost:8081` URL on firefox address bar 
+    ![image](./nesi_images/blobtools_firefox.png)
