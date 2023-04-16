@@ -1,4 +1,4 @@
-# Launch BlobTools2 viewer via JupyterHub Virtual Desktop
+# Launch BlobToolsKit viewer via JupyterHub Virtual Desktop
 
 !!! jupyter "1. Install"
     1. Start a Jupyter server session via https://jupyter.nesi.org.nz/. 
