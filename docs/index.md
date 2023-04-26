@@ -27,14 +27,15 @@
             ```bash
             source blobtools2/bin/activate
             ```
-        - Install `blobtoolkit[full]`
+        - Install `blobtoolkit[full]` (& couple of other dependencies which will be needed for creating datasets beyond the tutorial)
             ```py
-            pip install blobtoolkit[full]
+            pip install blobtoolkit[full] sniffio async_generator 
             ```
         - Although installing `[ful]` should take care of the extensions, we recommend installing `[host]` as a standalone command 
             ```py
             pip install blobtoolkit[host]
             ```
+    
 !!! jupyter "2. Create a sample dataset and test"
 
     These instructions are extracted from the [official BlobToolKit support documentation](https://blobtoolkit.genomehubs.org/blobtools2/blobtools2-tutorials/creating-a-dataset/) 
